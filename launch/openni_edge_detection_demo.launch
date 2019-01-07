@@ -1,0 +1,21 @@
+<launch>
+
+  <!-- Start the camera driver node -->
+  <include file="$(find aa274)/launch/openni2_skip_2.launch" />
+
+  <node name="image_view_1" pkg="image_view" type="image_view">
+     <remap from="image" to="/camera/rgb/image_rect_color" />
+     <param name="autosize" value="true"/>
+  </node>
+
+  <node name="image_view_2" pkg="image_view" type="image_view">
+     <remap from="image" to="/edge_detection/image" />
+     <param name="autosize" value="true" />
+  </node>
+
+  <node name="edge_detection" pkg="opencv_apps" type="edge_detection">
+     <remap from="image" to="/camera/rgb/image_rect_color" />
+     <param name="debug_view" value="false" />
+  </node>
+
+</launch>

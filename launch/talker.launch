@@ -1,0 +1,8 @@
+<launch>
+
+  <!-- Start the talker node -->
+  <node name="talker" pkg="aa274" type="talker.py" respawn="false" output="screen" clear_params="true">
+     <param name="rate" value="5"/>
+  </node>
+
+</launch>

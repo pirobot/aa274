@@ -1,0 +1,25 @@
+<launch>
+
+  <!-- Start the camera driver node -->
+  <arg name="video_device" default="/dev/video0" />
+
+  <!-- Start the camera driver node -->
+  <include file="$(find aa274)/launch/usbcam_driver.launch">
+     <arg name="video_device" value="$(arg video_device)" />
+  </include>
+
+  <node name="face_detection" pkg="opencv_apps" type="face_detection">
+     <remap from="image" to="/camera/image_color" />
+  </node>
+
+  <node name="image_view_1" pkg="image_view" type="image_view">
+     <remap from="image" to="/camera/image_color" />
+     <param name="autosize" value="true"/>
+  </node>
+
+  <node name="image_view_2" pkg="image_view" type="image_view">
+     <remap from="image" to="/face_detection/image" />
+     <param name="autosize" value="true" />
+  </node>
+
+</launch>
