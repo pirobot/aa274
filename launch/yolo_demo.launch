@@ -1,0 +1,12 @@
+<launch>
+
+  <arg name="video_device" default="/dev/video0" />
+
+  <!-- Start the camera driver node -->
+  <include file="$(find aa274)/launch/usbcam_driver.launch">
+     <arg name="video_device" value="$(arg video_device)" />
+  </include>
+
+  <include file="$(find aa274)/launch/darknet_ros.launch" />
+
+</launch>
